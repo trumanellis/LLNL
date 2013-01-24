@@ -1,0 +1,86 @@
+\frametitle {Kinematics}
+\small
+ Velocity and position are approximated with high order finite elements using
+basis functions $\vec w_i$:
+$$
+\vec{v}(\vec{x},t)\approx \displaystyle\sum_i^{N_v} \mathbf{v}_i(t) \vec w_i(\vec{x})
+$$
+\begin{center}
+\begin{minipage}{0.7\textwidth}
+ \begin{columns}
+  \begin{column}{0.3\textwidth}
+  \centering
+  \small
+  \textcolor{red}{\underline{Reference Space:}}
+    \includegraphics[width=1.0\textwidth,keepaspectratio=true,viewport=200 50
+900 775]{figures/Q2_Element_Ref.pdf}
+%     \textcolor{red}{$\phi(\hat{\vec{x}})$} \\[1ex]
+%     \textcolor{red}{$\vec{\nabla}\phi(\hat{\vec{x}})$}
+  \end{column}
+  \begin{column}{0.2\textwidth}
+   \begin{figure}[h!]
+    \centering
+    \vskip-5ex
+    \includegraphics[width=1.0\textwidth,keepaspectratio=true]{figures/transSpace_new.png}
+    \end{figure}
+  \end{column}
+  \begin{column}{0.3\textwidth}
+  \centering
+  \small
+  \textcolor{blue}{\underline{Physical Space:}}
+    \includegraphics[width=1.0\textwidth,keepaspectratio=true,viewport=200 50
+900 775]{figures/Q2_Element_Phys.pdf}
+%     \textcolor{blue}{$\phi(\vec{x})=\hat{\phi}(\Phi^{-1}(\vec{x}))$} \\[1ex]
+%     \textcolor{blue}{$\vec{\nabla}\phi=J_Z^{-1}\vec{\nabla}\hat{\phi}$}
+  \end{column}
+ \end{columns}
+ \end{minipage}
+ \end{center}
+{\small The Position DOFs define the mapping from a reference element to physical space.} %The derivative of this mapping is the Jacobian matrix}
+
+\medskip
+Weak formulation of the momentum conservation equation with a tensor artificial viscosity\footnote[frame,1]{\tiny Tz. Kolev, R. Rieben, "A tensor artificial viscosity using a finite element approach", Journal of Computational Physics 2009}:
+\[
+\int_{\Omega(t)} \left(\rho\dfrac{\mathrm{d}\vec{v}}{\mathrm{d}t}\right)\cdot \vec{w}_i
+ =\int_{\Omega(t)} (-\nabla p +\nabla \cdot \mu\nabla\vec{v}) \cdot \vec{w}_i
+ =\int_{\Omega(t)} (p\mathbf{I}-\mu\nabla\vec{v}) :\nabla\vec{w}_i
+\]
+\vskip-1.5ex
+\begin{columns}[T]
+\begin{column}{0.2\textwidth}
+\begin{block}{Velocity Mass Matrix}
+\centering
+$\displaystyle
+\mathbf{M}_v=\int_{\Omega}\rho \mathbf{w} \mathbf{w}^T
+$
+\end{block}
+\end{column}
+\begin{column}{0.15\textwidth}
+\begin{block}{Stress Tensor}
+\vskip1.5ex
+\centering
+$\displaystyle
+\sigma = -p\mathbf{I}+\mu\nabla\vec{v}
+$
+\vspace{-.5ex}
+\end{block}
+\end{column}
+\begin{column}{0.28\textwidth}
+\begin{block}{Conservation of Momentum}
+\centering
+$\displaystyle
+\mathbf{M}_v \frac{\mathrm{d}\mathbf{v}}{\mathrm{d}t}=-\int_{\Omega}\sigma: \nabla \mathbf{w}
+$
+\end{block}
+\end{column}
+\begin{column}{0.18\textwidth}
+\begin{block}{Equation of Motion}
+\centering
+$\displaystyle
+\frac{\mathrm{d}\mathbf{x}}{\mathrm{d}t}=\mathbf{v}
+$
+\vspace{.4ex}
+\end{block}
+\end{column}
+\end{columns}
+\smallskip

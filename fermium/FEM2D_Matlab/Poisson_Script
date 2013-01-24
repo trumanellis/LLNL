@@ -1,0 +1,21 @@
+%Using mixed finite elements to compute accelerations
+
+%Step 1) 
+%Initialize the mesh and all of the necessary topological data structures
+
+clear all;
+close all;
+clc;
+
+nelems=2;
+NZx=nelems;
+NZy=nelems;
+
+%Define the mesh extents
+xmin=0;
+xmax=1;
+ymin=0;
+ymax=1;
+
+%Compute the reference mesh nodes
+refnodes=ComputeReferenceMeshNodes(Nzx,NZy,[xmin,xmax],[ymin,ymax]);

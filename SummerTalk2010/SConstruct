@@ -1,0 +1,6 @@
+import os
+env = Environment(ENV=os.environ)
+pdfOutput = env.PDF(target='talk.pdf',source='talk.tex')
+Depends(pdfOutput,Split('talk.tex'))
+
+AlwaysBuild(pdfOutput)
